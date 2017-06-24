@@ -47,7 +47,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     registerForPushNotifications()
     
+    if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject] {
+      let aps = notification["aps"] as! [String: AnyObject]
+      _ = NewsItem.makeNewsItem(aps)
+      (window?.rootViewController as? UITabBarController)?.selectedIndex = 1
+    }
+    
     return true
+  }
+  
+  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    
+    let aps = userInfo["aps"] as! [String: AnyObject]
+    _ = NewsItem.makeNewsItem(aps)
   }
   
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
