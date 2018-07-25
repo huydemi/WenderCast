@@ -53,7 +53,7 @@ class NewsFeedTableViewController: UITableViewController {
     NotificationCenter.default.removeObserver(self)
   }
   
-  func receivedRefreshNewsFeedNotification(_ notification: Notification) {
+  @objc func receivedRefreshNewsFeedNotification(_ notification: Notification) {
     DispatchQueue.main.async {
       self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }

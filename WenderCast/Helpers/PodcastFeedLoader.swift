@@ -28,6 +28,7 @@
  * THE SOFTWARE.
  */
 import UIKit
+import SWXMLHash
 
 class PodcastFeedLoader: NSObject {
   static let FeedURL = "https://www.raywenderlich.com/category/podcast/feed"
@@ -42,7 +43,7 @@ class PodcastFeedLoader: NSObject {
         config.shouldProcessNamespaces = true
         }.parse(data)
       
-      let items = xmlIndexer["rss"]["channel"]["item"]
+      let items = xmlIndexer["rss"]["channel"]["item"].all
       
       let feedItems = items.flatMap { (indexer: XMLIndexer) -> PodcastItem? in
         if
