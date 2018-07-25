@@ -24,6 +24,8 @@ xcuserdata/
 ## Other
 *.moved-aside
 *.xcuserstate
+aps.cer
+aps_development.cer
 
 ## Obj-C/Swift specific
 *.hmap
